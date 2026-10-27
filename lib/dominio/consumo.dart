@@ -7,13 +7,28 @@ class Consumo {
   final double litros;
 }
 
-String? validarLitros(double? litros) {
+String? validarConsumo({required String laboratorio, required double? litros}) {
+  final labLimpio = laboratorio.trim();
 
-  if (litros == null) return 'Escribe los litros con número';
+  if (labLimpio.isEmpty) {
+    return 'Selecciona o escribe un laboratorio';
+  }
 
-  if (litros <= 0) return 'Los litros deben ser mayores que cero';
+  if (!laboratoriosUtez.contains(labLimpio)) {
+    return 'El laboratorio no pertenece a la UTEZ';
+  }
 
-  if (litros > 10000) return 'Los litros superan el tope de 10000';
+  if (litros == null) {
+    return 'Escribe los litros con número';
+  }
+
+  if (litros <= 0) {
+    return 'Los litros deben ser mayores que cero';
+  }
+
+  if (litros > 10000) {
+    return 'Los litros superan el tope de 10000';
+  }
 
   return null;
 }
